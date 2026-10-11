@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Base from '../layouts/Base.astro';
 import {
   businesses,
@@ -11,6 +12,7 @@ import {
 } from '../data/site';
 
 const site = Astro.site;
+const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/founders/*.webp', { eager: true });
 const displayHost = (href: string) => {
   try {
     const host = new URL(href).hostname;
@@ -121,10 +123,10 @@ const jsonLd = site && {
           <ul class="founders-list" role="list">
             {founders.map((f) => (
               <li class="card founder">
-                {f.photo ? (
+                {f.photo && photos[`../assets/founders/${f.photo.file}`] ? (
                   <Image
                     class="founder__photo"
-                    src={f.photo.src}
+                    src={photos[`../assets/founders/${f.photo.file}`].default}
                     width={272}
                     alt={f.photo.alt}
                     loading="lazy"

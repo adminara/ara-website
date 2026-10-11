@@ -1,7 +1,3 @@
-import type { ImageMetadata } from 'astro';
-import rudi from '../assets/founders/rudi-tri-hartanto.webp';
-import cakap from '../assets/founders/cakap-bagus-tulodo.webp';
-import irfansyah from '../assets/founders/irfansyah-rahmatullah-ramadhan.webp';
 
 export type Logo = { src: string; width: number; height: number };
 
@@ -18,7 +14,8 @@ export type Founder = {
   name: string;
   role: string;
   bio: string;
-  photo?: { src: ImageMetadata; alt: string };
+  /** Nama file di src/assets/founders/. */
+  photo?: { file: string; alt: string };
 };
 
 export const company = {
@@ -30,7 +27,7 @@ export const company = {
       'Halo PT Arunika Rucifan Adikarya, saya ingin menjajaki kerja sama bisnis.\n\nNama: \nInstansi/Perusahaan: \nKeperluan: \n\nTerima kasih.',
   },
   contact: { business: 'bisnis@arunikarucifanadikarya.com', info: 'info@arunikarucifanadikarya.com' },
-  title: 'PT Arunika Rucifan Adikarya — Perusahaan Payung Lini Pendidikan dan Halal',
+  title: 'PT Arunika Rucifan Adikarya',
   description:
     'PT Arunika Rucifan Adikarya menaungi lini usaha di bidang pendidikan dan layanan terkait halal: Era Baru Akademi dan Sahiva Halal Indonesia.',
   intro:
@@ -66,7 +63,7 @@ export const founders: Founder[] = [
     role: 'Pendiri',
     bio: 'Lulusan S1 Pendidikan Matematika Universitas Negeri Jakarta (UNJ) dengan pengalaman lebih dari 15 tahun di dunia pendidikan. Sejak 2011, aktif mengajar di berbagai lembaga bimbingan belajar dan sekolah, dengan fokus pada penguatan kompetensi akademik, pendampingan belajar, serta persiapan seleksi ke jenjang pendidikan lanjutan.\n\nSaat ini menjabat sebagai Wakil Kepala Sekolah sekaligus mengembangkan layanan bimbingan belajar EBA (Era Baru Akademi) dan les privat. Melalui pendampingan yang disesuaikan dengan kebutuhan siswa, turut mendukung para lulusan untuk melanjutkan pendidikan ke sekolah unggulan, perguruan tinggi negeri (PTN), dan sekolah kedinasan.\n\nBerkomitmen menghadirkan pendampingan pendidikan yang terarah, personal, dan berorientasi pada hasil, agar setiap siswa dapat mengembangkan potensinya secara optimal dan meraih masa depan akademik yang diharapkan.',
     photo: {
-      src: rudi,
+      file: 'rudi-tri-hartanto.webp',
       alt: 'Foto Pendiri Rudi Tri Hartanto',
     },
   },
@@ -75,7 +72,7 @@ export const founders: Founder[] = [
     role: 'Pendiri',
     bio: 'Berawal dari seorang profesional di bidang IT kemudian bertransformasi dengan membawa pengalaman dan keterampilan ke dunia pendidikan. Beliau sekarang menjadi bagian dari dunia pendidikan dan praktisi teknologi yang berkomitmen mengembangkan sumber daya manusia melalui pendidikan berkualitas dan pemanfaatan teknologi digital.\n\nKetertarikannya pada teknologi informasi, pemrograman, dan pengembangan solusi digital mendorongnya untuk mengintegrasikan teknologi dalam pembelajaran, pengelolaan lembaga pendidikan, serta pengembangan layanan digital. Melalui Era Baru Akademi (EBA) dan berbagai inisiatif di bidang pendidikan dan teknologi, ia turut menghadirkan layanan pembelajaran yang inovatif, adaptif, dan relevan dengan kebutuhan generasi masa kini.',
     photo: {
-      src: cakap,
+      file: 'cakap-bagus-tulodo.webp',
       alt: 'Foto Pendiri Cakap Bagus Tulodo',
     },
   },
@@ -84,7 +81,7 @@ export const founders: Founder[] = [
     role: 'Pendiri',
     bio: 'Profesional di bidang pendampingan dan pengawasan halal, dengan peran sebagai Penyelia Halal yang diakui oleh Badan Penyelenggara Jaminan Produk Halal (BPJPH) serta Mitra Halal Officer LPH LPPOM. Beliau menempuh pendidikan keislaman di Ma’had Aly Imam Syafi’i Cilacap (MAIS) dan meraih gelar sarjana (S1) dari STAI PTDII Jakarta.\n\nBerbekal pendidikan keislaman dan pengalaman dalam layanan halal, beliau berkomitmen mendukung penerapan standar jaminan produk halal serta pendampingan pelaku usaha dalam memenuhi persyaratan sertifikasi halal sesuai dengan regulasi yang berlaku di Indonesia.',
     photo: {
-      src: irfansyah,
+      file: 'irfansyah-rahmatullah-ramadhan.webp',
       alt: 'Foto Pendiri Irfansyah Rahmatullah Ramadhan',
     },
   },
