@@ -1,0 +1,17 @@
+{
+  "name": "arunika-rucifan-adikarya-web",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "node scripts/check-data.ts"
+  },
+  "dependencies": {
+    "astro": "^7.3.6"
+  }
+}

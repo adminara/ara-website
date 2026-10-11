@@ -1,0 +1,240 @@
+---
+import '../styles/global.css';
+import { company } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** false untuk halaman yang tidak boleh diindeks (mis. 404). */
+  indexable?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, indexable = true, jsonLd } = Astro.props;
+const site = Astro.site;
+const canonical = site && indexable ? new URL(Astro.url.pathname, site).href : null;
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#102A43" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        const dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) document.documentElement.setAttribute('data-theme', 'dark');
+      })();
+    </script>
+    {canonical && <link rel="canonical" href={canonical} />}
+    {!canonical && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content={company.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {
+      site && jsonLd && (
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
+      )
+    }
+  </head>
+  <body>
+    <a class="skip-link" href="#konten">Langsung ke konten</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-header__brand" href="/">
+          <img class="logo-light" src="/logo/ARA_Primary_Horizontal.svg" width="850" height="275" alt={`${company.name} — beranda`} />
+          <img class="logo-dark" src="/logo/ARA_Monochrome_White.svg" width="850" height="275" alt={`${company.name} — beranda`} />
+        </a>
+        <nav id="main-nav" class="site-nav" aria-label="Navigasi utama">
+          <ul class="nav">
+            <li><a href="/#tentang">Tentang</a></li>
+            <li><a href="/#lini-usaha">Lini Usaha</a></li>
+            <li><a href="/#pendiri">Pendiri</a></li>
+            <li><a href="/#kontak-bisnis">Kontak Bisnis</a></li>
+          </ul>
+        </nav>
+        <div class="site-header__actions">
+          <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Ganti mode tampilan" title="Ganti mode terang/gelap">
+            <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+            <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-5.4-5.4c0-1.81.89-3.42 2.26-4.4A9.04 9.04 0 0 0 12 3z" />
+            </svg>
+          </button>
+          <button id="nav-toggle" type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Buka menu navigasi" title="Menu">
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="konten" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <img src="/logo/ARA_Monochrome_White.svg" width="850" height="275" alt={`${company.name} logo`} loading="lazy" />
+        <div class="site-footer__meta">
+          <a href={`mailto:${company.contact.info}`} aria-label={`Email: ${company.contact.info}`}>
+            <svg class="contact-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <span>{company.contact.info}</span>
+          </a>
+          <a href={`https://wa.me/${company.whatsapp.number}`} aria-label={`WhatsApp: ${company.whatsapp.label}`}>
+            <svg class="contact-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.15c-1.49 0-2.95-.4-4.22-1.15l-.3-.18-3.13.82.83-3.05-.2-.31a8.13 8.13 0 0 1-1.25-4.37c0-4.51 3.67-8.18 8.18-8.18 2.19 0 4.24.85 5.78 2.39 1.55 1.55 2.4 3.6 2.4 5.79 0 4.51-3.67 8.18-8.18 8.18zm4.49-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.13.17 1.74 2.65 4.21 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.47-.29z"></path>
+            </svg>
+            <span>{company.whatsapp.label}</span>
+          </a>
+          <span>&copy; {year} {company.name}</span>
+        </div>
+      </div>
+    </footer>
+    <button id="to-top" type="button" class="to-top" aria-label="Kembali ke atas" title="Kembali ke atas"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg></button>
+    <script is:inline>
+      (() => {
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+          const root = document.documentElement;
+          themeBtn.addEventListener('click', () => {
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            const next = isDark ? 'light' : 'dark';
+            if (next === 'dark') {
+              root.setAttribute('data-theme', 'dark');
+            } else {
+              root.removeAttribute('data-theme');
+            }
+            localStorage.setItem('theme', next);
+          });
+        }
+
+        const navBtn = document.getElementById('nav-toggle');
+        const nav = document.getElementById('main-nav');
+        if (navBtn && nav) {
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          let scrollAnim = null;
+
+          const stopScroll = () => {
+            if (scrollAnim) {
+              cancelAnimationFrame(scrollAnim);
+              scrollAnim = null;
+            }
+            document.documentElement.style.scrollBehavior = '';
+          };
+          window.addEventListener('wheel', stopScroll, { passive: true });
+          window.addEventListener('touchmove', stopScroll, { passive: true });
+
+          const smoothScrollTo = (targetEl, duration = 800) => {
+            stopScroll();
+            const header = document.querySelector('.site-header');
+            const headerHeight = header ? header.offsetHeight : 64;
+            const startY = window.scrollY;
+            const targetY = Math.max(0, targetEl.getBoundingClientRect().top + startY - headerHeight);
+            const diff = targetY - startY;
+            if (Math.abs(diff) < 2) return;
+
+            if (prefersReducedMotion) {
+              window.scrollTo(0, targetY);
+              return;
+            }
+
+            const html = document.documentElement;
+            html.style.scrollBehavior = 'auto';
+            const startTime = performance.now();
+            const ease = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+
+            const step = (now) => {
+              const progress = Math.min((now - startTime) / duration, 1);
+              window.scrollTo(0, Math.round(startY + diff * ease(progress)));
+              if (progress < 1) {
+                scrollAnim = requestAnimationFrame(step);
+              } else {
+                stopScroll();
+              }
+            };
+            scrollAnim = requestAnimationFrame(step);
+          };
+
+          const closeMenu = () => {
+            navBtn.setAttribute('aria-expanded', 'false');
+            navBtn.setAttribute('aria-label', 'Buka menu navigasi');
+            nav.classList.remove('is-open');
+          };
+
+          navBtn.addEventListener('click', () => {
+            const isOpen = navBtn.getAttribute('aria-expanded') === 'true';
+            if (isOpen) {
+              closeMenu();
+            } else {
+              navBtn.setAttribute('aria-expanded', 'true');
+              navBtn.setAttribute('aria-label', 'Tutup menu navigasi');
+              nav.classList.add('is-open');
+            }
+          });
+
+          nav.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', (e) => {
+              closeMenu();
+              const hash = link.hash;
+              if (!hash) return;
+              const target = document.querySelector(hash);
+              if (!target) return;
+              e.preventDefault();
+              history.pushState(null, '', hash);
+              smoothScrollTo(target, 800);
+            });
+          });
+
+          document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && !navBtn.contains(e.target)) {
+              closeMenu();
+            }
+          });
+
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+              closeMenu();
+              navBtn.focus();
+            }
+          });
+
+        }
+        const toTop = document.getElementById('to-top');
+        if (toTop) {
+          const mobileMq = window.matchMedia('(max-width: 48rem)');
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          let hideT = null;
+          const hideTop = () => toTop.classList.remove('is-visible');
+          window.addEventListener('scroll', () => {
+            if (!mobileMq.matches || window.scrollY < 400) { hideTop(); return; }
+            toTop.classList.add('is-visible');
+            clearTimeout(hideT);
+            hideT = setTimeout(hideTop, 1500);
+          }, { passive: true });
+          toTop.addEventListener('click', () => {
+            hideTop();
+            if (reduceMotion) { window.scrollTo(0, 0); return; }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
