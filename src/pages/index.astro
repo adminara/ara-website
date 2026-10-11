@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import {
   businesses,
@@ -121,11 +122,10 @@ const jsonLd = site && {
             {founders.map((f) => (
               <li class="card founder">
                 {f.photo ? (
-                  <img
+                  <Image
                     class="founder__photo"
                     src={f.photo.src}
-                    width={f.photo.width}
-                    height={f.photo.height}
+                    width={272}
                     alt={f.photo.alt}
                     loading="lazy"
                   />

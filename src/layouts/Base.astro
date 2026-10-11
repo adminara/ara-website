@@ -53,7 +53,7 @@ const year = new Date().getFullYear();
       <div class="container site-header__inner">
         <a class="site-header__brand" href="/">
           <img class="logo-light" src="/logo/ARA_Primary_Horizontal.svg" width="850" height="275" alt={`${company.name} — beranda`} />
-          <img class="logo-dark" src="/logo/ARA_Monochrome_White.svg" width="850" height="275" alt={`${company.name} — beranda`} />
+          <img class="logo-dark" src="/logo/ARA_Monochrome_White.svg" width="850" height="275" loading="lazy" alt={`${company.name} — beranda`} />
         </a>
         <nav id="main-nav" class="site-nav" aria-label="Navigasi utama">
           <ul class="nav">
@@ -82,7 +82,7 @@ const year = new Date().getFullYear();
       </div>
     </header>
 
-    <main id="konten" tabindex="-1">
+    <main id="konten">
       <slot />
     </main>
 
