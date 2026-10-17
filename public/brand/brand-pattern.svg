@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+<defs>
+  <pattern id="ara-grid" width="160" height="160" patternUnits="userSpaceOnUse">
+    <path d="M0 0 L80 40 L160 0 L120 80 L160 160 L80 120 L0 160 L40 80 Z" fill="none" stroke="#102A43" stroke-width="1.5" stroke-opacity="0.08"/>
+    <polygon points="80,40 120,80 80,120 40,80" fill="#1769A5" fill-opacity="0.05"/>
+    <polygon points="80,40 100,60 80,80 60,60" fill="#F59E0B" fill-opacity="0.12"/>
+    <circle cx="80" cy="80" r="3" fill="#F59E0B" fill-opacity="0.4"/>
+    <path d="M80 0 L80 160 M0 80 L160 80" stroke="#102A43" stroke-width="0.8" stroke-dasharray="4,6" stroke-opacity="0.06"/>
+  </pattern>
+</defs>
+<rect width="100%" height="100%" fill="#FAF6ED"/>
+<rect width="100%" height="100%" fill="url(#ara-grid)"/>
+</svg>

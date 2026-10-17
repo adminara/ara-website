@@ -1,18 +1,20 @@
 :root {
   --navy: #102a43;
   --navy-2: #19486d;
-  --blue: #1469af;
+  --blue: #1769a5;
   --amber: #f59e0b;
   --amber-2: #fbbf24;
-  --bg: #f7f9fb;
-  --band: #eef2f6;
+  --cream: #faf6ed;
+  --bg: #fff;
+  --band: #faf6ed;
   --surface: #fff;
   --text: #102a43;
-  --text-2: #334e68;
-  --muted: #52606d;
-  --border: #dde5ed;
+  --text-2: #1e293b;
+  --muted: #4b5a6b;
+  --border: #e6dfcf;
   --radius: 16px;
-  --font: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font: "Plus Jakarta Sans", Inter, Aptos, "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: Georgia, Garamond, "Times New Roman", serif;
   --header-bg: rgb(255 255 255 / 0.96);
   --footer-bg: #102a43;
   --footer-text: #cbd5e1;
@@ -56,7 +58,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text-2);
-  font: 1rem/1.65 var(--font);
+  font: 1rem/1.6 var(--font);
   -webkit-font-smoothing: antialiased;
   overflow-wrap: break-word;
 }
@@ -79,12 +81,14 @@ h3 {
 h1 {
   font-size: clamp(2rem, 5.5vw, 3.4rem);
   font-weight: 800;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.5px;
 }
 
 h2 {
   font-size: clamp(1.6rem, 3.5vw, 2.25rem);
-  font-weight: 800;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.25px;
 }
 
 h3 {
@@ -389,7 +393,71 @@ section[id] {
 
 /* Hero */
 .hero {
-  padding-block: clamp(2.5rem, 7vw, 5rem);
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("/brand/brand-pattern.svg") center top / 640px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent);
+  mask-image: linear-gradient(to bottom, #000 40%, transparent);
+}
+
+html[data-theme="dark"] .hero::before {
+  display: none;
+}
+
+.hero__tagline {
+  margin-top: 1rem;
+  color: var(--text);
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  font-weight: 700;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.6rem 1.4rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn--primary {
+  background: var(--amber);
+  color: #102a43;
+}
+
+.btn--primary:hover {
+  background: var(--amber-2);
+}
+
+.btn--ghost {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.btn--ghost:hover {
+  background: var(--text);
+  color: var(--bg);
 }
 
 .hero__grid {
@@ -454,6 +522,72 @@ section[id] {
   max-width: 65ch;
   font-size: 1.0625rem;
   line-height: 1.75;
+}
+
+/* Values */
+.values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.value {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--amber);
+  border-radius: var(--radius);
+}
+
+.value h3 {
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.value__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  background: var(--cream);
+  border-radius: 12px;
+}
+
+.value__icon img {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.closing {
+  margin-top: 1.5rem;
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-style: italic;
+}
+
+/* Scroll reveal: CSS-only, skipped when unsupported or reduced motion */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+    }
+  }
 }
 
 /* Cards */

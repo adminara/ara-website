@@ -12,6 +12,12 @@ import {
 } from '../data/site';
 
 const site = Astro.site;
+const values = [
+  { icon: 'shield', title: 'Integritas & Amanah', text: 'Menjunjung kejujuran, etika bisnis tertinggi, dan transparansi dalam setiap keputusan strategis.' },
+  { icon: 'strategy', title: 'Keunggulan Mahakarya', text: 'Berkomitmen menghadirkan standar mutu terbaik dan kepeloporan bernilai tinggi.' },
+  { icon: 'growth', title: 'Optimisme Fajar', text: 'Membawa energi positif, solusi segar, dan harapan baru dalam setiap langkah korporat.' },
+  { icon: 'synergy', title: 'Sinergi Berkelanjutan', text: 'Membangun kolaborasi erat lintas unit usaha untuk mencapai dampak pertumbuhan.' },
+];
 const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/founders/*.webp', { eager: true });
 const displayHost = (href: string) => {
   try {
@@ -42,6 +48,11 @@ const jsonLd = site && {
         <h1 id="judul">{company.name}</h1>
         <span class="rule" aria-hidden="true"></span>
         <p class="lead">{company.intro}</p>
+        <p class="hero__tagline">Berkarya untuk Masa Depan</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#kontak-bisnis">Hubungi Tim Bisnis</a>
+          <a class="btn btn--ghost" href="#lini-usaha">Lihat Lini Usaha</a>
+        </div>
       </div>
       <div class="hero__art" aria-hidden="true">
         <img src="/logo/ARA_Monogram.svg" width="400" height="350" alt="" fetchpriority="high" />
@@ -61,7 +72,27 @@ const jsonLd = site && {
     </div>
   </section>
 
-  <section id="lini-usaha" class="section section--band" aria-labelledby="lini-judul">
+  <section id="nilai" class="section section--band" aria-labelledby="nilai-judul">
+    <div class="container">
+      <p class="eyebrow">Nilai-nilai utama</p>
+      <h2 id="nilai-judul">Fondasi yang Kami Pegang</h2>
+      <ul class="values" role="list">
+        {
+          values.map((v) => (
+            <li class="value reveal">
+              <div class="value__icon" aria-hidden="true">
+                <img src={`/brand/icons/${v.icon}.svg`} width="24" height="24" alt="" loading="lazy" />
+              </div>
+              <h3>{v.title}</h3>
+              <p>{v.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section id="lini-usaha" class="section" aria-labelledby="lini-judul">
     <div class="container">
       <p class="eyebrow">Direktori</p>
       <h2 id="lini-judul">Lini Usaha</h2>
@@ -74,7 +105,7 @@ const jsonLd = site && {
           businesses.map((b) => {
             const url = httpsUrl(b.url);
             return (
-              <li class="card business">
+              <li class="card business reveal">
                 <div class="business__mark" aria-hidden="true">
                   {b.logo ? (
                     <img src={b.logo.src} width={b.logo.width} height={b.logo.height} alt="" loading="lazy" />
@@ -113,7 +144,7 @@ const jsonLd = site && {
     </div>
   </section>
 
-  <section id="pendiri" class="section" aria-labelledby="pendiri-judul">
+  <section id="pendiri" class="section section--band" aria-labelledby="pendiri-judul">
     <div class="container">
       <p class="eyebrow">Di balik perusahaan</p>
       <h2 id="pendiri-judul">Profil Pendiri</h2>
@@ -122,7 +153,7 @@ const jsonLd = site && {
         founders.length > 0 ? (
           <ul class="founders-list" role="list">
             {founders.map((f) => (
-              <li class="card founder">
+              <li class="card founder reveal">
                 {f.photo && photos[`../assets/founders/${f.photo.file}`] ? (
                   <Image
                     class="founder__photo"
@@ -153,7 +184,7 @@ const jsonLd = site && {
       }
     </div>
   </section>
-  <section id="kontak-bisnis" class="section section--band" aria-labelledby="bisnis-judul">
+  <section id="kontak-bisnis" class="section" aria-labelledby="bisnis-judul">
     <div class="container split">
       <div>
         <p class="eyebrow">Kemitraan</p>
@@ -176,6 +207,7 @@ const jsonLd = site && {
             <span>{company.whatsapp.label}</span>
           </a>
         </div>
+        <p class="closing">Berkarya untuk Masa Depan</p>
       </div>
     </div>
   </section>
