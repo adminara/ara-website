@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="350" viewBox="0 0 400 350" role="img" aria-label="ARA Monogram"><title>ARA Monogram</title><defs xmlns="http://www.w3.org/2000/svg">
-    <linearGradient id="amber" x1="0" y1="0" x2=".7" y2="1">
-      <stop stop-color="#FBBF24" />
-      <stop offset="1" stop-color="#F59E0B" />
-    </linearGradient>
-    <linearGradient id="blue-left" x1=".3" y1=".1" x2=".7" y2="1">
-      <stop stop-color="#268CC4" />
-      <stop offset="1" stop-color="#102A43" />
-    </linearGradient>
-    <linearGradient id="blue-right" x1="0" y1="0" x2="1" y2=".5">
-      <stop stop-color="#2E9AD2" />
-      <stop offset=".45" stop-color="#1469AF" />
-      <stop offset="1" stop-color="#102A43" />
-    </linearGradient>
-    <linearGradient id="navy-band" x1="0" y1="1" x2="1" y2="0">
-      <stop stop-color="#102A43" />
-      <stop offset="1" stop-color="#19486D" />
-    </linearGradient>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="ARA Favicon">
+  <title>ARA Favicon</title>
+  <defs>
+    <linearGradient id="amber" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#FBBF24"/><stop offset="1" stop-color="#F59E0B"/></linearGradient>
+    <linearGradient id="blue-left" x1=".3" y1=".1" x2=".7" y2="1"><stop stop-color="#268CC4"/><stop offset="1" stop-color="#102A43"/></linearGradient>
+    <linearGradient id="blue-right" x1="0" y1="0" x2="1" y2=".5"><stop stop-color="#2E9AD2"/><stop offset=".45" stop-color="#1469AF"/><stop offset="1" stop-color="#102A43"/></linearGradient>
   </defs>
-  <g xmlns="http://www.w3.org/2000/svg" transform="translate(20 10) scale(3.6)"><path d="M17 53 L47 4 Q50 -1 53 4 L84 57 Q67 39 50 42 Q34 42 17 53 Z" fill="url(#amber)" />
-      <path d="M58.119,45.274 L66.629,43.466" stroke="#fff" stroke-width=".8" />
-      <path d="M57.077,42.663 L64.495,38.118" stroke="#fff" stroke-width=".8" />
-      <path d="M55.223,40.550 L60.698,33.789" stroke="#fff" stroke-width=".8" />
-      <path d="M52.771,39.176 L55.675,30.975" stroke="#fff" stroke-width=".8" />
-      <path d="M50.000,38.700 L50.000,30.000" stroke="#fff" stroke-width=".8" />
-      <path d="M47.229,39.176 L44.325,30.975" stroke="#fff" stroke-width=".8" />
-      <path d="M44.777,40.550 L39.302,33.789" stroke="#fff" stroke-width=".8" />
-      <path d="M42.923,42.663 L35.505,38.118" stroke="#fff" stroke-width=".8" />
-      <path d="M41.881,45.274 L33.371,43.466" stroke="#fff" stroke-width=".8" />
-      <path d="M41 47 A9 9 0 0 1 59 47 Z" fill="white" />
-      <path d="M1 79 Q18 43 48 44 Q76 38 99 79 L75 77 Q66 52 48 48 Q31 50 13 77 Z" fill="#102A43" />
-      <path d="M2 79 Q22 48 47 46 Q31 52 16 74 Q11 78 2 79 Z" fill="url(#blue-left)" />
-      <path d="M15 77 Q32 54 50 49 Q36 61 32 74 Q31 77 28 77 Z" fill="url(#amber)" />
-      <path d="M51 46 Q77 45 96 79 L72 77 Q67 76 66 71 Q62 53 51 46 Z" fill="url(#blue-right)" />
-      <path d="M51 46 Q73 46 83 77 L73 77 Q68 76 67 72 Q63 54 51 46 Z" fill="#176BAD" opacity=".65" />
-      </g></svg>
+  <g transform="translate(256, 256) scale(4.2) translate(-50, -40)">
+    <path d="M17 53 L47 4 Q50 -1 53 4 L84 57 Q67 39 50 42 Q34 42 17 53 Z" fill="url(#amber)" />
+    <path d="M58.119,45.274 L66.629,43.466" stroke="#fff" stroke-width=".8" />
+    <path d="M57.077,42.663 L64.495,38.118" stroke="#fff" stroke-width=".8" />
+    <path d="M55.223,40.550 L60.698,33.789" stroke="#fff" stroke-width=".8" />
+    <path d="M52.771,39.176 L55.675,30.975" stroke="#fff" stroke-width=".8" />
+    <path d="M50.000,38.700 L50.000,30.000" stroke="#fff" stroke-width=".8" />
+    <path d="M47.229,39.176 L44.325,30.975" stroke="#fff" stroke-width=".8" />
+    <path d="M44.777,40.550 L39.302,33.789" stroke="#fff" stroke-width=".8" />
+    <path d="M42.923,42.663 L35.505,38.118" stroke="#fff" stroke-width=".8" />
+    <path d="M41.881,45.274 L33.371,43.466" stroke="#fff" stroke-width=".8" />
+    <path d="M41 47 A9 9 0 0 1 59 47 Z" fill="white" />
+    <path d="M1 79 Q18 43 48 44 Q76 38 99 79 L75 77 Q66 52 48 48 Q31 50 13 77 Z" fill="#102A43" />
+    <path d="M2 79 Q22 48 47 46 Q31 52 16 74 Q11 78 2 79 Z" fill="url(#blue-left)" />
+    <path d="M15 77 Q32 54 50 49 Q36 61 32 74 Q31 77 28 77 Z" fill="url(#amber)" />
+    <path d="M51 46 Q77 45 96 79 L72 77 Q67 76 66 71 Q62 53 51 46 Z" fill="url(#blue-right)" />
+    <path d="M51 46 Q73 46 83 77 L73 77 Q68 76 67 72 Q63 54 51 46 Z" fill="#176BAD" opacity=".65" />
+  </g>
+</svg>
