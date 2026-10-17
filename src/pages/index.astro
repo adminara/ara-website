@@ -191,24 +191,151 @@ const jsonLd = site && {
         <h2 id="bisnis-judul">Kontak Bisnis</h2>
       </div>
       <div class="prose">
-        <p>Untuk penjajakan kerja sama atau kemitraan, hubungi tim bisnis kami melalui email atau WhatsApp.</p>
-        <div class="contact-links">
-          <a class="contact-link" href={`mailto:${company.contact.business}`} aria-label={`Email: ${company.contact.business}`}>
-            <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-            </svg>
-            <span>{company.contact.business}</span>
-          </a>
-          <a class="contact-link" href={waUrl(company.whatsapp.number, company.whatsapp.businessText)} aria-label={`WhatsApp: ${company.whatsapp.label}`}>
-            <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.15c-1.49 0-2.95-.4-4.22-1.15l-.3-.18-3.13.82.83-3.05-.2-.31a8.13 8.13 0 0 1-1.25-4.37c0-4.51 3.67-8.18 8.18-8.18 2.19 0 4.24.85 5.78 2.39 1.55 1.55 2.4 3.6 2.4 5.79 0 4.51-3.67 8.18-8.18 8.18zm4.49-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.13.17 1.74 2.65 4.21 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.47-.29z"></path>
-            </svg>
-            <span>{company.whatsapp.label}</span>
-          </a>
-        </div>
+        <p>Untuk penjajakan kerja sama atau kemitraan, lengkapi formulir di bawah ini untuk mengirim pesan via WhatsApp atau Email.</p>
+
+        <form
+          id="contact-biz-form"
+          class="biz-form"
+          data-wa={company.whatsapp.number}
+          data-email={company.contact.business}
+          data-company={company.name}
+        >
+          <div class="form-group">
+            <label for="biz-name" class="form-label">
+              Nama <span class="form-req" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="biz-name"
+              name="name"
+              class="form-input"
+              placeholder="Nama lengkap Anda"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="biz-company" class="form-label">
+              Instansi/Perusahaan <span class="form-req" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="biz-company"
+              name="company"
+              class="form-input"
+              placeholder="Instansi atau nama perusahaan"
+              required
+              autocomplete="organization"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="biz-purpose" class="form-label">
+              Keperluan <span class="form-req" aria-hidden="true">*</span>
+            </label>
+            <textarea
+              id="biz-purpose"
+              name="purpose"
+              class="form-input form-textarea"
+              rows="3"
+              placeholder="Tuliskan keperluan atau rencana kerja sama Anda"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="btn-biz-wa" name="channel" value="wa" class="btn btn--wa">
+              <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.15c-1.49 0-2.95-.4-4.22-1.15l-.3-.18-3.13.82.83-3.05-.2-.31a8.13 8.13 0 0 1-1.25-4.37c0-4.51 3.67-8.18 8.18-8.18 2.19 0 4.24.85 5.78 2.39 1.55 1.55 2.4 3.6 2.4 5.79 0 4.51-3.67 8.18-8.18 8.18zm4.49-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.13.17 1.74 2.65 4.21 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.47-.29z"></path>
+              </svg>
+              <span>Kirim via WhatsApp</span>
+            </button>
+            <button type="submit" id="btn-biz-email" name="channel" value="email" class="btn btn--email">
+              <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>Kirim via Email</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- <div class="biz-direct">
+          <p class="biz-direct__label">Atau hubungi langsung:</p>
+          <div class="contact-links">
+            <a class="contact-link" href={`mailto:${company.contact.business}`} aria-label={`Email: ${company.contact.business}`}>
+              <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>{company.contact.business}</span>
+            </a>
+            <a class="contact-link" href={waUrl(company.whatsapp.number, company.whatsapp.businessText)} aria-label={`WhatsApp: ${company.whatsapp.label}`}>
+              <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.15c-1.49 0-2.95-.4-4.22-1.15l-.3-.18-3.13.82.83-3.05-.2-.31a8.13 8.13 0 0 1-1.25-4.37c0-4.51 3.67-8.18 8.18-8.18 2.19 0 4.24.85 5.78 2.39 1.55 1.55 2.4 3.6 2.4 5.79 0 4.51-3.67 8.18-8.18 8.18zm4.49-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.13.17 1.74 2.65 4.21 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.47-.29z"></path>
+              </svg>
+              <span>{company.whatsapp.label}</span>
+            </a>
+          </div>
+        </div> -->
+
         <p class="closing">Berkarya untuk Masa Depan</p>
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (() => {
+      const form = document.getElementById('contact-biz-form');
+      if (!form) return;
+
+      let lastChannel = 'wa';
+      const waBtn = document.getElementById('btn-biz-wa');
+      const emailBtn = document.getElementById('btn-biz-email');
+
+      if (waBtn) waBtn.addEventListener('click', () => { lastChannel = 'wa'; });
+      if (emailBtn) emailBtn.addEventListener('click', () => { lastChannel = 'email'; });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const channel = (e.submitter && e.submitter.getAttribute('value')) || lastChannel;
+        const nameInput = document.getElementById('biz-name');
+        const compInput = document.getElementById('biz-company');
+        const purposeInput = document.getElementById('biz-purpose');
+
+        const name = (nameInput ? nameInput.value : '').trim();
+        const comp = (compInput ? compInput.value : '').trim();
+        const purpose = (purposeInput ? purposeInput.value : '').trim();
+
+        const waNumber = form.getAttribute('data-wa') || '6285199699734';
+        const emailTo = form.getAttribute('data-email') || 'bisnis@arunikarucifanadikarya.com';
+        const companyName = form.getAttribute('data-company') || 'PT Arunika Rucifan Adikarya';
+
+        if (channel === 'wa') {
+          const text = 'Halo ' + companyName + ', saya ingin menjajaki kerja sama bisnis.\n\n' +
+            'Nama: ' + name + '\n' +
+            'Instansi/Perusahaan: ' + comp + '\n' +
+            'Keperluan: ' + purpose + '\n\n' +
+            'Terima kasih.';
+          window.open('https://wa.me/' + waNumber + '?text=' + encodeURIComponent(text), '_blank', 'noopener,noreferrer');
+        } else {
+          const subject = 'Penjajakan Kerja Sama Bisnis - ' + name + ' (' + comp + ')';
+          const body = 'Halo Tim Bisnis ' + companyName + ',\n\n' +
+            'Saya ingin menjajaki kerja sama bisnis dengan rincian berikut:\n\n' +
+            'Nama: ' + name + '\n' +
+            'Instansi/Perusahaan: ' + comp + '\n' +
+            'Keperluan:\n' + purpose + '\n\n' +
+            'Terima kasih.';
+          window.location.href = 'mailto:' + emailTo + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        }
+      });
+    })();
+  </script>
 </Base>
